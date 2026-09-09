@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost/incidencias-api';
+const API_URL = import.meta.env.VITE_API_URL;
+fetch("https://api-incidencias-b1jk.onrender.com/empleados/listar.php");
 
 const parseJsonResponse = async (response) => {
   const text = await response.text();

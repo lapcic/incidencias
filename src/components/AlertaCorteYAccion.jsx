@@ -33,7 +33,7 @@ export default function AlertaCorteYAccion() {
       formData.append('id_empleado', idEmpleadoActual);
 
       // NOTA: No incluyas la propiedad 'headers' para evitar que se dispare el bloqueo CORS por preflight
-      const response = await fetch('http://localhost/incidencias-api/corte/corte_mensual.php', {
+      const response = await fetch('https://api-incidencias-b1jk.onrender.com/corte/corte_mensual.php', {
         method: 'POST',
         body: formData
       });
