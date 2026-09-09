@@ -56,7 +56,7 @@ export default function AlertaCorteYAccion() {
       }
     } catch (error) {
       console.error("Error de red:", error);
-      alert('Error de conexión con el servidor local.');
+      alert('Error de conexión con el servidor.');
     }
   };
 

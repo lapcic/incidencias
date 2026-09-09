@@ -1,5 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
-fetch("https://api-incidencias-b1jk.onrender.com/empleados/listar.php");
+const API_BASE_URL = "https://api-incidencias-b1jk.onrender.com";
 
 const parseJsonResponse = async (response) => {
   const text = await response.text();
@@ -10,8 +9,7 @@ const parseJsonResponse = async (response) => {
     console.error('El servidor no devolvió un JSON válido:', text);
     throw new Error('Respuesta inválida del servidor');
   }
-};
-
+}; 
 export const api = {
   
   // Autenticación
