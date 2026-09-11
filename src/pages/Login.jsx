@@ -105,6 +105,7 @@ export default function Login({ onLoginSuccess }) {
               className="form-input"
               type="text"
               placeholder={tipoAcceso === 'RH' ? 'Ingresa tu usuario' : 'Ingresa tu usuario'}
+              autoComplete="username"
               value={usuario}
               onChange={(e) => setUsuario(e.target.value)}
               required
@@ -117,6 +118,7 @@ export default function Login({ onLoginSuccess }) {
               className="form-input"
               type="password"
               placeholder="••••••••"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

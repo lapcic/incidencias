@@ -257,6 +257,7 @@ export default function Usuarios() {
                   <input
                     className="form-input"
                     type="text"
+                    autoComplete="username"
                     value={formCrear.usuario}
                     onChange={(e) => setFormCrear({ ...formCrear, usuario: e.target.value })}
                   />
@@ -267,6 +268,7 @@ export default function Usuarios() {
                     className="form-input"
                     type="password"
                     placeholder="Contraseña inicial"
+                    autoComplete="new-password"
                     value={formCrear.password}
                     onChange={(e) => setFormCrear({ ...formCrear, password: e.target.value })}
                   />
@@ -373,6 +375,7 @@ export default function Usuarios() {
                   <input
                     className="form-input"
                     type="text"
+                    autoComplete="username"
                     value={formEditar.usuario}
                     onChange={(e) => setFormEditar({ ...formEditar, usuario: e.target.value })}
                   />
@@ -383,6 +386,7 @@ export default function Usuarios() {
                     className="form-input"
                     type="password"
                     placeholder="Dejar vacío para no cambiar"
+                    autoComplete="new-password"
                     value={formEditar.password}
                     onChange={(e) => setFormEditar({ ...formEditar, password: e.target.value })}
                   />
