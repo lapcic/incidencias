@@ -273,6 +273,58 @@ body {
   background: #f8fafc;
 }
 
+/* Tabla de usuarios: conserva espacio para los datos y evita encabezados partidos */
+.usuarios-table {
+  min-width: 980px;
+  table-layout: auto;
+}
+
+.usuarios-table th,
+.usuarios-table td {
+  vertical-align: middle;
+}
+
+.usuarios-table th {
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.usuarios-table th:first-child,
+.usuarios-table td:first-child {
+  width: 64px;
+  white-space: nowrap;
+}
+
+.usuarios-table th:nth-child(3),
+.usuarios-table td:nth-child(3) {
+  min-width: 120px;
+}
+
+.usuarios-table th:nth-child(4),
+.usuarios-table td:nth-child(4) {
+  min-width: 150px;
+}
+
+.usuarios-table th:nth-child(5),
+.usuarios-table td:nth-child(5),
+.usuarios-table th:nth-child(6),
+.usuarios-table td:nth-child(6),
+.usuarios-table th:nth-child(7),
+.usuarios-table td:nth-child(7) {
+  white-space: nowrap;
+}
+
+.usuarios-table th:nth-child(8),
+.usuarios-table td:nth-child(8) {
+  min-width: 116px;
+}
+
+.usuarios-table th:last-child,
+.usuarios-table td:last-child {
+  width: 108px;
+  white-space: nowrap;
+}
+
 /* 
    Badges de Estado
     */
@@ -1110,5 +1162,82 @@ body {
 
 .icon-btn-edit:hover {
   background: #fde68a;
+}
+
+/* ==========================================================================
+   AJUSTES BASE PARA RESPONSIVIDAD
+   ========================================================================== */
+
+/* Evita que elementos internos provoquen scroll horizontal */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Todos los elementos respetan el ancho de su contenedor */
+img,
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+/* Permite que los elementos dentro de grids puedan reducirse */
+.grid-metrics-5,
+.form-grid-2,
+.lapcic-empleado-grid,
+.lapcic-tipos-grid,
+.lapcic-fecha-horario-grid,
+.opciones-cambio-container,
+.firmas-grid,
+.preview-firmas-grid {
+  min-width: 0;
+}
+
+/* Los elementos largos no deben romper el diseño */
+.card,
+.metric-card,
+.firma-card,
+.formato-lapcic-container,
+.modal-card,
+.modal-preview-card,
+.opcion-cambio-box,
+.validacion-section {
+  min-width: 0;
+}
+
+/* Formularios */
+.form-input,
+.form-select,
+.form-textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Tablas */
+.table-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Canvas de firmas */
+.firma-canvas {
+  touch-action: none;
+}
+
+/* Evita problemas con textos largos */
+.metric-title,
+.metric-value,
+.firma-card-label,
+.lapcic-field-row label,
+.opcion-row label,
+.custom-table th,
+.custom-table td {
+  overflow-wrap: anywhere;
 }
 

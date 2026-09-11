@@ -167,7 +167,7 @@ export default function Usuarios() {
 
       {/* Tabla de Empleados */}
       <div className="table-container">
-        <table className="custom-table">
+        <table className="custom-table usuarios-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -189,16 +189,16 @@ export default function Usuarios() {
             ) : (
               empleadosFiltrados.map((emp) => (
                 <tr key={emp.id_empleado}>
-                  <td style={{ fontWeight: 700 }}>#{emp.id_empleado}</td>
-                  <td><strong>{emp.nombre}</strong></td>
-                  <td style={{ color: 'var(--color-azul-principal)', fontWeight: 600 }}>
+                  <td data-label="ID" style={{ fontWeight: 700 }}>#{emp.id_empleado}</td>
+                  <td data-label="Nombre"><strong>{emp.nombre}</strong></td>
+                  <td data-label="Usuario" style={{ color: 'var(--color-azul-principal)', fontWeight: 600 }}>
                     {emp.usuario || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Sin usuario</span>}
                   </td>
-                  <td>{emp.puesto}</td>
-                  <td>{emp.sucursal}</td>
-                  <td>{emp.horario}</td>
-                  <td>{emp.fecha_nacimiento}</td>
-                  <td style={{ textAlign: 'center' }}>
+                  <td data-label="Puesto">{emp.puesto}</td>
+                  <td data-label="Sucursal">{emp.sucursal}</td>
+                  <td data-label="Horario">{emp.horario}</td>
+                  <td data-label="Fecha de nacimiento">{emp.fecha_nacimiento}</td>
+                  <td data-label="Estado" style={{ textAlign: 'center' }}>
                     <button
                       type="button"
                       onClick={() => handleToggleEstado(emp)}
@@ -212,7 +212,7 @@ export default function Usuarios() {
                       )}
                     </button>
                   </td>
-                  <td style={{ textAlign: 'center' }}>
+                  <td data-label="Acciones" style={{ textAlign: 'center' }}>
                     <div className="action-btn-group">
                       <button
                         type="button"

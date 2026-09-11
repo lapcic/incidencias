@@ -1,0 +1,1055 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   Sistema de Incidencias LAPCIC
+   ========================================================================== */
+
+
+/* ==========================================================================
+   TABLETS GRANDES
+   769px - 1024px
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+  /* -----------------------------------------------------------------------
+     NAVBAR
+     ----------------------------------------------------------------------- */
+
+  .navbar-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.25rem;
+  }
+
+  .nav-item {
+    padding: 0.5rem 0.65rem;
+  }
+
+  .nav-item span {
+    font-size: 0.8rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CONTENIDO
+     ----------------------------------------------------------------------- */
+
+  .main-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMATO LAPCIC
+     ----------------------------------------------------------------------- */
+
+  .formato-lapcic-container {
+    padding: 1.5rem;
+  }
+
+  .lapcic-empleado-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lapcic-tipos-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FIRMAS
+     ----------------------------------------------------------------------- */
+
+  .firmas-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ==========================================================================
+   TABLET
+   601px - 768px
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* -----------------------------------------------------------------------
+     NAVBAR
+     ----------------------------------------------------------------------- */
+
+  .navbar-content {
+    height: auto;
+    min-height: 64px;
+    padding: 0.65rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .brand-logo-nav {
+    width: 125px;
+    height: 42px;
+  }
+
+  /*
+     Los enlaces pueden desplazarse horizontalmente
+     en lugar de romper el diseño.
+  */
+  .nav-links {
+    width: 100%;
+    order: 2;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .nav-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CONTENIDO PRINCIPAL
+     ----------------------------------------------------------------------- */
+
+  .main-content {
+    padding: 1.25rem 0.85rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CARDS
+     ----------------------------------------------------------------------- */
+
+  .card {
+    padding: 1.15rem;
+  }
+
+  .card-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     DASHBOARD
+     ----------------------------------------------------------------------- */
+
+  .grid-metrics-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .metric-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .metric-value {
+    font-size: 1.3rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMULARIOS
+     ----------------------------------------------------------------------- */
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMATO LAPCIC
+     ----------------------------------------------------------------------- */
+
+  .formato-lapcic-container {
+    padding: 1.15rem;
+    gap: 1rem;
+  }
+
+  .lapcic-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .lapcic-logo-title {
+    justify-content: center;
+  }
+
+  .lapcic-folio-date {
+    align-items: center;
+  }
+
+  .lapcic-empleado-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lapcic-tipos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lapcic-fecha-horario-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     OPCIONES DE CAMBIO
+     ----------------------------------------------------------------------- */
+
+  .opciones-cambio-container {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     VALIDACIÓN
+     ----------------------------------------------------------------------- */
+
+  .validacion-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .val-check-item {
+    margin-left: 0 !important;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FIRMAS
+     ----------------------------------------------------------------------- */
+
+  .firmas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .firma-card {
+    padding: 1rem;
+  }
+
+  .firma-canvas-container {
+    height: 160px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     BOTONES
+     ----------------------------------------------------------------------- */
+
+  .form-actions-bar {
+    flex-direction: column-reverse;
+  }
+
+  .btn-guardar-incidencia,
+  .btn-limpiar {
+    width: 100%;
+    justify-content: center;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     MODAL DE VISTA PREVIA
+     ----------------------------------------------------------------------- */
+
+  .modal-preview-header {
+    padding: 1rem;
+  }
+
+  .modal-preview-body {
+    padding: 1rem;
+  }
+
+  .modal-preview-footer {
+    padding: 1rem;
+    flex-direction: column-reverse;
+  }
+
+  .modal-preview-footer .btn {
+    width: 100%;
+  }
+
+  .preview-firmas-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     SECTION CARD
+     ----------------------------------------------------------------------- */
+
+  .section-card {
+    padding: 1.15rem;
+  }
+
+  .section-heading {
+    flex-direction: column;
+  }
+
+}
+
+
+/* ==========================================================================
+   CELULAR
+   Hasta 600px
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /* -----------------------------------------------------------------------
+     AJUSTES GENERALES
+     ----------------------------------------------------------------------- */
+
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     NAVBAR
+     ----------------------------------------------------------------------- */
+
+  .navbar-content {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .brand-logo-nav {
+    width: 115px;
+    height: 40px;
+  }
+
+  .nav-links {
+    gap: 0.2rem;
+    overflow-x: visible;
+    overflow-y: visible;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+
+  .nav-item {
+    flex: 1 1 calc(50% - 0.2rem);
+    justify-content: center;
+    min-width: 0;
+    padding: 0.55rem 0.35rem;
+    font-size: 0.75rem;
+  }
+
+  .nav-item svg {
+    width: 16px;
+    height: 16px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     USUARIO DEL NAVBAR
+     ----------------------------------------------------------------------- */
+
+  .nav-links > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+    margin: 0.25rem 0 0 !important;
+    padding: 0.5rem 0 0 !important;
+    border-left: 0 !important;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .nav-links > div:last-child span {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CONTENIDO
+     ----------------------------------------------------------------------- */
+
+  .main-content {
+    padding: 1rem 0.65rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CARDS
+     ----------------------------------------------------------------------- */
+
+  .card {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+
+  /* -----------------------------------------------------------------------
+     DASHBOARD
+     ----------------------------------------------------------------------- */
+
+  .grid-metrics-5 {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .metric-card {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMULARIOS
+     ----------------------------------------------------------------------- */
+
+  /*
+     16px evita que iPhone haga zoom automático
+     al seleccionar inputs.
+  */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     TABLAS
+     ----------------------------------------------------------------------- */
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .custom-table {
+    min-width: 700px;
+    font-size: 0.8rem;
+  }
+
+  .custom-table th {
+    padding: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .custom-table td {
+    padding: 0.75rem;
+  }
+
+  .usuarios-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .usuarios-table thead {
+    display: none;
+  }
+
+  .usuarios-table,
+  .usuarios-table tbody,
+  .usuarios-table tr,
+  .usuarios-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .usuarios-table tr {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .usuarios-table tr:last-child {
+    border-bottom: 0;
+  }
+
+  .usuarios-table td {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 38%) minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .usuarios-table td::before {
+    content: attr(data-label);
+    color: var(--color-azul-principal);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .usuarios-table td[colspan] {
+    display: block;
+    text-align: center;
+  }
+
+  .usuarios-table td[colspan]::before {
+    content: none;
+  }
+
+  .usuarios-table td[style*="text-align: center"] {
+    text-align: left !important;
+  }
+
+  .usuarios-table td[data-label="Acciones"] .action-btn-group {
+    width: auto;
+    min-width: 2.25rem;
+    justify-content: flex-start;
+  }
+
+  .usuarios-table td[data-label="Acciones"] .icon-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 2.25rem;
+  }
+
+  .incidencias-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .incidencias-table thead {
+    display: none;
+  }
+
+  .incidencias-table,
+  .incidencias-table tbody,
+  .incidencias-table tr,
+  .incidencias-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .incidencias-table tr {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .incidencias-table tr:last-child {
+    border-bottom: 0;
+  }
+
+  .incidencias-table td {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 38%) minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    min-width: 0;
+    max-width: none !important;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .incidencias-table td::before {
+    content: attr(data-label);
+    color: var(--color-azul-principal);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .incidencias-table td[colspan] {
+    display: block;
+    text-align: center;
+  }
+
+  .incidencias-table td[colspan]::before {
+    content: none;
+  }
+
+  .incidencias-table td[style*="text-align: center"] {
+    text-align: left !important;
+  }
+
+  .incidencias-table td[data-label="Acciones"] .action-btn-group {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .incidencias-table td[data-label="Acciones"] .icon-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 2.25rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMATO LAPCIC
+     ----------------------------------------------------------------------- */
+
+  .formato-lapcic-container {
+    padding: 0.8rem;
+    border-radius: var(--radius-md);
+  }
+
+  .lapcic-header {
+    gap: 0.75rem;
+  }
+
+  .lapcic-logo-title {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .lapcic-logo-text {
+    font-size: 1.3rem;
+  }
+
+  .lapcic-logo-sub {
+    font-size: 0.68rem;
+  }
+
+  .lapcic-main-title {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .lapcic-folio-date {
+    width: 100%;
+  }
+
+  .lapcic-no-box {
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .lapcic-fecha-badge {
+    font-size: 0.72rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     BARRAS LAPCIC
+     ----------------------------------------------------------------------- */
+
+  .lapcic-bar-title {
+    font-size: 0.75rem;
+    padding: 0.45rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     DATOS DEL EMPLEADO
+     ----------------------------------------------------------------------- */
+
+  .lapcic-empleado-grid {
+    padding: 0.75rem;
+  }
+
+  .lapcic-field-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .lapcic-field-row label {
+    min-width: 0;
+    font-size: 0.75rem;
+  }
+
+  .lapcic-field-row input,
+  .lapcic-field-row select {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     TIPOS DE INCIDENCIA
+     ----------------------------------------------------------------------- */
+
+  .lapcic-tipos-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+  }
+
+  .lapcic-tipo-card {
+    min-height: 52px;
+    font-size: 0.67rem;
+    padding: 0.45rem 0.25rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     JUSTIFICACIÓN
+     ----------------------------------------------------------------------- */
+
+  .lapcic-justificacion-box {
+    padding: 0.75rem;
+  }
+
+  .lapcic-justificacion-label {
+    font-size: 0.72rem;
+  }
+
+  .lapcic-justificacion-box textarea {
+    width: 100%;
+    min-height: 100px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FECHAS Y HORARIOS
+     ----------------------------------------------------------------------- */
+
+  .lapcic-fecha-horario-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CAJAS VERDES
+     ----------------------------------------------------------------------- */
+
+  .lapcic-green-header {
+    font-size: 0.75rem;
+  }
+
+  .lapcic-green-body {
+    padding: 0.55rem;
+  }
+
+  .lapcic-green-body input {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     OPCIONES DE CAMBIO
+     ----------------------------------------------------------------------- */
+
+  .opciones-cambio-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .opcion-cambio-title {
+    font-size: 0.78rem;
+  }
+
+  .opcion-cambio-body {
+    padding: 0.75rem;
+  }
+
+  .opcion-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .opcion-row label {
+    width: auto;
+    font-size: 0.75rem;
+  }
+
+  .opcion-row input {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     VALIDACIÓN
+     ----------------------------------------------------------------------- */
+
+  .validacion-controls {
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .val-check-item {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 0.75rem;
+  }
+
+  .validacion-motivo-box {
+    padding: 0.75rem;
+  }
+
+  .validacion-motivo-label {
+    font-size: 0.72rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     OBSERVACIONES
+     ----------------------------------------------------------------------- */
+
+  .lapcic-obs-header {
+    font-size: 0.75rem;
+  }
+
+  .lapcic-obs-body {
+    padding: 0.55rem;
+  }
+
+  .lapcic-obs-body input {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FIRMAS
+     ----------------------------------------------------------------------- */
+
+  .firmas-section-title {
+    font-size: 0.78rem;
+  }
+
+  .firmas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .firma-card {
+    padding: 0.9rem;
+  }
+
+  .firma-card-label {
+    font-size: 0.8rem;
+  }
+
+  .firma-canvas-container {
+    height: 150px;
+  }
+
+  .firma-upload-box {
+    font-size: 0.75rem;
+  }
+
+  .btn-borrar-firma {
+    width: 100%;
+    align-self: stretch;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     MODALES
+     ----------------------------------------------------------------------- */
+
+  .modal-backdrop {
+    padding: 0.5rem;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100vh - 1rem);
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-preview-card {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100vh - 1rem);
+    border-radius: var(--radius-md);
+  }
+
+  .modal-preview-header {
+    padding: 0.75rem;
+  }
+
+  .modal-preview-body {
+    padding: 0.75rem;
+  }
+
+  .modal-preview-footer {
+    padding: 0.75rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     ALERTA DE CORTE
+     ----------------------------------------------------------------------- */
+
+  .corte-alert {
+    width: 100%;
+  }
+
+}
+
+
+/* ==========================================================================
+   CELULARES PEQUEÑOS
+   Hasta 480px
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  /* -----------------------------------------------------------------------
+     CONTENIDO
+     ----------------------------------------------------------------------- */
+
+  .main-content {
+    padding: 0.75rem 0.5rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     CARDS
+     ----------------------------------------------------------------------- */
+
+  .card {
+    padding: 0.85rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     LOGO
+     ----------------------------------------------------------------------- */
+
+  .brand-logo-nav {
+    width: 105px;
+    height: 36px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     NAV
+     ----------------------------------------------------------------------- */
+
+  .nav-item {
+    padding: 0.4rem 0.5rem;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     TÍTULOS
+     ----------------------------------------------------------------------- */
+
+  h1 {
+    font-size: 1.35rem !important;
+  }
+
+  h2 {
+    font-size: 1.1rem !important;
+  }
+
+  h3 {
+    font-size: 0.95rem !important;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     BOTONES
+     ----------------------------------------------------------------------- */
+
+  .btn {
+    width: 100%;
+    min-height: 42px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FORMULARIOS
+     ----------------------------------------------------------------------- */
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100% !important;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     LAPCIC
+     ----------------------------------------------------------------------- */
+
+  .formato-lapcic-container {
+    padding: 0.6rem;
+  }
+
+  .lapcic-tipos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lapcic-tipo-card {
+    min-height: 48px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     FIRMAS
+     ----------------------------------------------------------------------- */
+
+  .firma-canvas-container {
+    height: 140px;
+  }
+
+
+  /* -----------------------------------------------------------------------
+     MODALES
+     ----------------------------------------------------------------------- */
+
+  .modal-preview-header,
+  .modal-preview-body,
+  .modal-preview-footer {
+    padding: 0.65rem;
+  }
+
+} 
+
+/* ==========================================================================
+   AJUSTE DE CONTENIDO COMPLETO PARA TABLAS (USUARIOS E HISTORIAL)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Permitir que la tabla se adapte al contenedor sin forzar un min-width rígido */
+  .custom-table {
+    min-width: 100%;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  /* Evitar que los textos se corten y permitir que fluyan con naturalidad */
+  .custom-table th,
+  .custom-table td {
+    white-space: normal;
+    word-break: break-word;
+    padding: 0.75rem 0.65rem;
+    font-size: 0.82rem;
+  }
+}
+

@@ -369,7 +369,7 @@ export default function ListaIncidencias() {
 
       {/* Tabla */}
       <div className="table-container">
-        <table className="custom-table">
+        <table className="custom-table incidencias-table">
           <thead>
             <tr>
               <th>Folio</th>
@@ -389,18 +389,18 @@ export default function ListaIncidencias() {
             ) : (
               incidenciasFiltradas.map((inc) => (
                 <tr key={inc.id_incidencia}>
-                  <td style={{ fontFamily: 'monospace', fontWeight: 700, color: 'var(--primary)' }}>{inc.folio}</td>
+                  <td data-label="Folio" style={{ fontFamily: 'monospace', fontWeight: 700, color: 'var(--primary)' }}>{inc.folio}</td>
                   {esRH && (
-                    <td>
+                    <td data-label="Empleado">
                       <strong>{inc.nombre}</strong>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-sub)' }}>{inc.puesto} - {inc.sucursal}</div>
                     </td>
                   )}
-                  <td>
+                  <td data-label="Tipo">
                     {inc.tipo_incidencia}
                     {inc.otro_descripcion && <div style={{ fontSize: '0.75rem', color: 'var(--text-sub)' }}>({inc.otro_descripcion})</div>}
                   </td>
-                  <td>
+                  <td data-label="Fecha y horario">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Calendar size={12} color="var(--text-sub)" /> {inc.fecha_incidencia}
                     </div>
@@ -408,9 +408,9 @@ export default function ListaIncidencias() {
                       <Clock size={12} /> {inc.horario_incidencia}
                     </div>
                   </td>
-                  <td style={{ maxWidth: '200px', fontSize: '0.8rem' }} title={inc.justificacion}>{inc.justificacion}</td>
-                  <td style={{ textAlign: 'center' }}>{getBadge(inc.estado)}</td>
-                  <td style={{ textAlign: 'center' }}>
+                  <td data-label="Justificación" style={{ maxWidth: '200px', fontSize: '0.8rem' }} title={inc.justificacion}>{inc.justificacion}</td>
+                  <td data-label="Estado" style={{ textAlign: 'center' }}>{getBadge(inc.estado)}</td>
+                  <td data-label="Acciones" style={{ textAlign: 'center' }}>
                     <div className="action-btn-group">
                       <button type="button" className="icon-btn icon-btn-view" title="Ver Formato LAPCIC" onClick={() => { setIncidenciaSeleccionada(inc); setModalVistaPrevia(true); }}>
                         <Eye size={15} />
