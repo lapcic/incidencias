@@ -29,5 +29,24 @@ npm run build
 npm run preview
 ```
 
-## Nota
-Esta versión utiliza `localStorage`, por lo que no necesita base de datos para funcionar como prototipo. Para producción se puede conectar a una API y una base de datos (SQL Server, MySQL o PostgreSQL), además de agregar autenticación y control de permisos.
+## Base de datos local con XAMPP
+
+1. Inicia **Apache** y **MySQL** desde el panel de XAMPP.
+2. En phpMyAdmin crea una base de datos llamada `incidencias` e importa el esquema de tus tablas (`empleados`, `incidencias` y las relacionadas).
+3. Entra a la carpeta `backend`, instala sus dependencias y copia `.env.example` como `.env`:
+
+```bash
+cd backend
+npm install
+copy .env.example .env
+npm start
+```
+
+La conexión usa por defecto `root` sin contraseña en `127.0.0.1:3306`. Si tu instalación de XAMPP tiene otros datos, edita `.env` antes de iniciar el backend.
+
+## API publicada
+
+El frontend usa por defecto la API publicada en Render:
+`https://api-incidencias-b1jk.onrender.com`.
+
+Para apuntar a otra API durante el desarrollo, define `VITE_API_URL` antes de ejecutar Vite.

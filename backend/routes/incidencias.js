@@ -14,7 +14,7 @@ module.exports = function registrarCorteMensual(app, db) {
         return res.status(200).json({ mensaje: "No hay incidencias para respaldar." });
       }
 
-      const fechaActual = new Date().toISOString().slice(0, 7); // Formato YYYY-MM
+      const fechaActual = new Date().toISOString().slice(0, 7); 
       const carpetaRespaldo = path.join(__dirname, '../../cortes_mensuales', fechaActual);
 
       if (!fs.existsSync(carpetaRespaldo)) {

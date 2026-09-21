@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const registrarCorteMensual = require('./routes/incidencias');
@@ -11,14 +13,21 @@ let db;
 try {
   db = require('./db');
 } catch (error) {
-  db = {
-    query: async () => [[]],
-  };
-  console.warn('No se encontró un módulo de base de datos. Se usará un modo de desarrollo sin persistencia.');
+  console.error('No se pudo configurar la conexión con MySQL de XAMPP:', error);
+  process.exit(1);
 }
 
 registrarCorteMensual(app, db);
 
-app.listen(3000, () => {
-  console.log('Servidor backend escuchando en http://localhost:3000');
+const PORT = Number(process.env.PORT || 3000);
+
+app.listen(PORT, async () => {
+  try {
+    await db.query('SELECT 1');
+    console.log(`Servidor backend escuchando en http://localhost:${PORT}`);
+    console.log('Conexión con MySQL de XAMPP establecida.');
+  } catch (error) {
+    console.error('No se pudo conectar con MySQL de XAMPP:', error.message);
+    process.exit(1);
+  }
 });
