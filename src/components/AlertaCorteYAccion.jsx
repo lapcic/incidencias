@@ -276,35 +276,18 @@ export default function AlertaCorteYAccion() {
           Recuerda que el corte mensual de incidencias se realiza al final de cada mes. Asegúrate de generar y descargar el archivo ZIP correspondiente antes de que finalice el mes para mantener un registro adecuado de las incidencias.
         </p>
  
-        <div
-          style={{
-            display: "flex",
-            gap: "0.75rem",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="corte-acciones">
           <button
             type="button"
             onClick={descargarCorteMensual}
             disabled={procesando}
-            style={{
-              backgroundColor: "#856404",
-              color: "#fff",
-              border: "none",
-              padding: "0.6rem 1rem",
-              borderRadius: "4px",
-              cursor: procesando
-                ? "not-allowed"
-                : "pointer",
-              fontWeight: "bold",
-              opacity: procesando ? 0.7 : 1,
-            }}
+            className="btn-corte btn-corte-descargar"
           >
             {procesando
               ? "Procesando..."
               : esRH
-              ? "Descargar corte"
-              : ""}
+              ? "Descargar corte mensual"
+              : "Descargar mis incidencias"}
           </button>
 
           {esRH && (
@@ -312,18 +295,7 @@ export default function AlertaCorteYAccion() {
               type="button"
               onClick={eliminarCorteMensual}
               disabled={procesando}
-              style={{
-                backgroundColor: "#b02a37",
-                color: "#fff",
-                border: "none",
-                padding: "0.6rem 1rem",
-                borderRadius: "4px",
-                cursor: procesando
-                  ? "not-allowed"
-                  : "pointer",
-                fontWeight: "bold",
-                opacity: procesando ? 0.7 : 1,
-              }}
+              className="btn-corte btn-corte-eliminar"
             >
               Eliminar incidencias del mes
             </button>

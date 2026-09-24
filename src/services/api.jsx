@@ -1,9 +1,10 @@
 const API_BASE_URL_CONFIGURADA = import.meta.env.VITE_API_URL;
-
-export const API_BASE_URL = (
+const API_URL = (
   API_BASE_URL_CONFIGURADA ||
   "https://api-incidencias-b1jk.onrender.com"
 ).replace(/\/$/, "");
+
+export const API_BASE_URL = API_URL;
 
 const parseJsonResponse = async (response) => {
   const text = await response.text();
@@ -15,6 +16,54 @@ const parseJsonResponse = async (response) => {
     throw new Error('Respuesta inválida del servidor');
   }
 }; 
+
+export async function descargarCorte(mes, rol, idEmpleado = null) {
+  let url =
+    `${API_URL}/corte/descargar_corte.php` +
+    `?mes=${encodeURIComponent(mes)}` +
+    `&rol=${encodeURIComponent(rol)}`;
+
+  if (rol === "Empleado" && idEmpleado) {
+    url += `&id_empleado=${encodeURIComponent(idEmpleado)}`;
+  }
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const texto = await response.text();
+
+    let error;
+
+    try {
+      error = JSON.parse(texto);
+    } catch {
+      error = {
+        error: texto || "No se pudo generar el corte.",
+      };
+    }
+
+    throw new Error(
+      error.detalle ||
+        error.error ||
+        "No se pudo generar el corte."
+    );
+  }
+
+  const blob = await response.blob();
+  const enlace = document.createElement("a");
+  const urlBlob = window.URL.createObjectURL(blob);
+
+  enlace.href = urlBlob;
+  enlace.download =
+    rol === "RH"
+      ? `Corte_Incidencias_${mes}.zip`
+      : `Mis_Incidencias_${mes}.zip`;
+
+  document.body.appendChild(enlace);
+  enlace.click();
+  enlace.remove();
+  window.URL.revokeObjectURL(urlBlob);
+}
 
 export const api = {
   
@@ -100,66 +149,7 @@ export const api = {
     rol,
     id_empleado = null,
   }) => {
-    const parametros = new URLSearchParams({
-      mes,
-      rol,
-    });
-
-    if (rol === "Empleado" && id_empleado) {
-      parametros.set("id_empleado", String(id_empleado));
-    }
-
-    const res = await fetch(
-      `${API_BASE_URL}/corte/descargar_corte.php?${parametros.toString()}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/zip, application/json",
-        },
-      }
-    );
-
-    const tipoContenido =
-      res.headers.get("content-type") || "";
-
-    if (!res.ok) {
-      let mensaje = "Error al generar el archivo ZIP.";
-
-      if (tipoContenido.includes("application/json")) {
-        const errorData = await res.json();
-        mensaje =
-          errorData.error ||
-          errorData.mensaje ||
-          mensaje;
-      }
-
-      throw new Error(mensaje);
-    }
-
-    const blob = await res.blob();
-
-    if (blob.size === 0) {
-      throw new Error("El archivo ZIP está vacío.");
-    }
-
-    const nombreArchivo =
-      rol === "RH"
-        ? `corte_general_${mes}.zip`
-        : `mis_incidencias_${mes}.zip`;
-
-    const url = window.URL.createObjectURL(blob);
-    const enlace = document.createElement("a");
-
-    enlace.href = url;
-    enlace.download = nombreArchivo;
-    document.body.appendChild(enlace);
-    enlace.click();
-    enlace.remove();
-
-    setTimeout(() => {
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-
+    await descargarCorte(mes, rol, id_empleado);
     return true;
   },
 

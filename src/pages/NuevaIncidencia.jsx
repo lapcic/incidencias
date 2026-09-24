@@ -344,7 +344,7 @@ export default function NuevaIncidencia() {
       <div className="lapcic-observaciones-section">
         <div className="lapcic-obs-header">Observaciones:</div>
         <div className="lapcic-obs-body">
-          <input type="text" value={observaciones} onChange={(e) => setObservaciones(e.target.value)} placeholder="Ej. Sin goce de sueldo" />
+          <input type="text" value={observaciones} onChange={(e) => setObservaciones(e.target.value)} placeholder=" " />
         </div>
       </div>
 

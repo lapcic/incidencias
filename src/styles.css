@@ -236,6 +236,35 @@ body {
   border: 1px solid var(--danger-border);
 }
 
+.corte-acciones {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-corte {
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-blanco);
+  cursor: pointer;
+  font-weight: 700;
+  transition: opacity 0.15s ease;
+}
+
+.btn-corte:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-corte-descargar {
+  background: var(--warning-text);
+}
+
+.btn-corte-eliminar {
+  background: var(--danger-text);
+}
+
 /* ==========================================================================
    Tablas
    ========================================================================== */
@@ -908,7 +937,7 @@ body {
 .firma-canvas-container {
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--color-blanco);
+  background-color: #a7f3d0;  
   height: 180px;
   position: relative;
   overflow: hidden;
@@ -1008,7 +1037,7 @@ body {
 }
 
 /* ==========================================================================
-   Botones de Acción en Tablas
+   Botones de Acción en Tablas 
    ========================================================================== */
 .action-btn-group {
   display: flex;
