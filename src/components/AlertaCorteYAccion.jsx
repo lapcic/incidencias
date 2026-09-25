@@ -120,7 +120,7 @@ export default function AlertaCorteYAccion() {
     }
 
     const confirmar = window.confirm(
-      "¿Deseas generar el ZIP de prueba del mes actual?"
+      "¿Deseas generar el ZIP del mes actual?"
     );
 
     if (!confirmar) {
