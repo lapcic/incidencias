@@ -3,7 +3,7 @@ import { api, API_BASE_URL } from "../services/api";
 
 // Cambia a false para mostrar el aviso solo en los días finales del mes según el rol del usuario
 // Si se deja en true, el aviso se mostrará siempre, sin importar la fecha ni el rol del usuario
-const MODO_PRUEBA = true;
+const MODO_PRUEBA = false;
 
 export default function AlertaCorteYAccion() {
   const [mostrarAviso, setMostrarAviso] = useState(false);
