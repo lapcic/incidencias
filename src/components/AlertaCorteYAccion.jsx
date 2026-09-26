@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { api, API_BASE_URL } from "../services/api";
 
-// Cambia a false cuando termines la prueba
+// Cambia a false para mostrar el aviso solo en los días finales del mes según el rol del usuario
+// Si se deja en true, el aviso se mostrará siempre, sin importar la fecha ni el rol del usuario
 const MODO_PRUEBA = true;
 
 export default function AlertaCorteYAccion() {
@@ -61,12 +62,12 @@ export default function AlertaCorteYAccion() {
       }
     } catch (error) {
       console.error(
-        "Error al leer la sesión:",
+        "Error al inicializar la sesión:",
         error
       );
 
       setMensajeEstado(
-        "No se pudo leer la sesión del usuario."
+        "No se pudo inicializar la sesión."
       );
     }
   }, []);
@@ -120,9 +121,9 @@ export default function AlertaCorteYAccion() {
     }
 
     const confirmar = window.confirm(
-      "¿Deseas generar el ZIP del mes actual?"
+      "¿Deseas descargar el corte?"
     );
-
+ 
     if (!confirmar) {
       return;
     }
@@ -174,7 +175,7 @@ export default function AlertaCorteYAccion() {
 
   const eliminarCorteMensual = async () => {
     const confirmar = window.confirm(
-      "¿Estás seguro de eliminar únicamente las incidencias del mes actual? Esta acción no se puede deshacer."
+      "¿Estás seguro de eliminar las incidencias del mes actual? Advertencia: Una vez eliminadas, no será posible recuperarlas."
     );
 
     if (!confirmar) {
@@ -195,7 +196,7 @@ export default function AlertaCorteYAccion() {
 
       if (!usuarioEsRH) {
         throw new Error(
-          "Solo RH puede eliminar incidencias."
+          "Solo el Administrador puede eliminar incidencias."
         );
       }
 
@@ -273,7 +274,8 @@ export default function AlertaCorteYAccion() {
         </strong>
 
         <p style={{ margin: "0 0 1rem" }}>
-          Recuerda que el corte mensual de incidencias se realiza al final de cada mes. Asegúrate de generar y descargar el archivo ZIP correspondiente antes de que finalice el mes para mantener un registro adecuado de las incidencias.
+          Importante: Antes de eliminar las incidencias, verifica que la descarga se haya generado 
+          correctamente durante el corte mensual, ya que, una vez eliminadas, no será posible recuperarlas.
         </p>
  
         <div className="corte-acciones">

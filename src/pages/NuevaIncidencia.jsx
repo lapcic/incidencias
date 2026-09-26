@@ -323,9 +323,9 @@ export default function NuevaIncidencia() {
         </div>
       </div>
 
-      {/* 6. VALIDACIÓN DE INCIDENCIA (Solo editable por RH, bloqueado para empleado) */}
+      {/* 6. VALIDACIÓN DE INCIDENCIA (Solo editable por Administrador, bloqueado para empleado) */}
       <div className="validacion-section" style={{ opacity: esRH ? 1 : 0.85 }}>
-        <div className="validacion-bar-title">Validación de incidencia {!esRH && '(Reservado para RH)'}</div>
+        <div className="validacion-bar-title">Validación de incidencia {!esRH && '(Reservado para Administrador)'}</div>
         <div className="validacion-controls">
           <span style={{ fontWeight: 800, color: '#1e3a8a' }}>Autoriza:</span>
           <label className="val-check-item"><span>Sí. Opc. 1</span><input type="checkbox" disabled={!esRH} checked={validacion.opcion_1} onChange={(e) => setValidacion({ ...validacion, opcion_1: e.target.checked })} /></label>
