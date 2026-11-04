@@ -3,7 +3,7 @@ const API_URL = (
   API_BASE_URL_CONFIGURADA ||
   (import.meta.env.DEV
     ? "/incidencias-api"
-    : "http://localhost/incidencias-api")
+    : "https://api-incidencias-b1jk.onrender.com")
 ).replace(/\/$/, "");
 
 export const API_BASE_URL = API_URL;
