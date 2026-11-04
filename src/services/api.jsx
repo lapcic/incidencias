@@ -1,7 +1,9 @@
 const API_BASE_URL_CONFIGURADA = import.meta.env.VITE_API_URL;
 const API_URL = (
   API_BASE_URL_CONFIGURADA ||
-  "https://api-incidencias-b1jk.onrender.com"
+  (import.meta.env.DEV
+    ? "/incidencias-api"
+    : "http://localhost/incidencias-api")
 ).replace(/\/$/, "");
 
 export const API_BASE_URL = API_URL;
@@ -83,21 +85,31 @@ export const api = {
     if (!res.ok) throw new Error('Error al obtener los empleados');
     return parseJsonResponse(res);
   },
+// --- EMPLEADOS (USUARIOS) ---
+  getEmpleados: async () => {
+    const res = await fetch(`${API_BASE_URL}/empleados/listar.php`);
+    if (!res.ok) throw new Error('Error al obtener los empleados');
+    return parseJsonResponse(res);
+  },
 
   createEmpleado: async (data) => {
+    // Si data ya es un FormData, lo enviamos directamente sin el header JSON
+    const isFormData = data instanceof FormData;
     const res = await fetch(`${API_BASE_URL}/empleados/crear.php`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      body: isFormData ? data : JSON.stringify(data),
     });
     return parseJsonResponse(res);
   },
 
   updateEmpleado: async (data) => {
+    // Si data ya es un FormData, lo enviamos directamente sin el header JSON
+    const isFormData = data instanceof FormData;
     const res = await fetch(`${API_BASE_URL}/empleados/editar.php`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      body: isFormData ? data : JSON.stringify(data),
     });
     return parseJsonResponse(res);
   },
