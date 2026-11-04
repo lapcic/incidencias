@@ -1,7 +1,6 @@
 node_modules/
 .env
-.env.*
-!.env.example
-config/certs/*.json
-!config/certs/ca.pem
- 
+.env.local
+dist/
+build/
+.vscode/

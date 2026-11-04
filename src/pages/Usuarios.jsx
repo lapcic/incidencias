@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { api, API_BASE_URL } from '../services/api';
-import { Users, UserPlus, CheckCircle, XCircle, Pencil, Search } from 'lucide-react';
+import { api } from '../services/api';
+import { Users, UserPlus, CheckCircle, XCircle, Pencil, Key, Search, Lock } from 'lucide-react';
 
 export default function Usuarios() {
   const [empleados, setEmpleados] = useState([]);
@@ -11,29 +11,16 @@ export default function Usuarios() {
   const [showModalCrear, setShowModalCrear] = useState(false);
   const [showModalEditar, setShowModalEditar] = useState(false);
 
-  // Formulario Crear (Incluyendo todos los documentos)
+  // Formulario Crear
   const [formCrear, setFormCrear] = useState({
     nombre: '',
     usuario: '',
     password: '',
     puesto: '',
-    id_sucursal: '',
+    id_sucursal: '', // Usar id_sucursal
     horario: '',
     fecha_nacimiento: '',
-    activo: 1,
-    ine: null,
-    curp: null,
-    rfc: null,
-    acta_nacimiento: null,
-    comprobante_domicilio: null,
-    nss: null,
-    estudios: null,
-    cedula_profesional: null,
-    solicitud_trabajo: null,
-    cartas_recomendacion: null,
-    cv: null,
-    carta_antecedentes: null,
-    fotografia: null
+    activo: 1
   });
 
   // Formulario Editar
@@ -43,23 +30,10 @@ export default function Usuarios() {
     usuario: '',
     password: '',
     puesto: '',
-    id_sucursal: '',
+    id_sucursal: '', // Usar id_sucursal
     horario: '',
     fecha_nacimiento: '',
-    activo: 1,
-    ine: null,
-    curp: null,
-    rfc: null,
-    acta_nacimiento: null,
-    comprobante_domicilio: null,
-    nss: null,
-    estudios: null,
-    cedula_profesional: null,
-    solicitud_trabajo: null,
-    cartas_recomendacion: null,
-    cv: null,
-    carta_antecedentes: null,
-    fotografia: null
+    activo: 1
   });
 
   const cargarEmpleados = async () => {
@@ -78,76 +52,29 @@ export default function Usuarios() {
     cargarEmpleados();
   }, []);
 
-  // Tamaño máximo por archivo (debe ser menor que upload_max_filesize de PHP)
-  const MAX_MB = 5;
-
-  const seleccionarArchivo = (e, campo, formState, setFormState) => {
-    const archivo = e.target.files[0] || null;
-    if (archivo && archivo.size > MAX_MB * 1024 * 1024) {
-      alert(`El archivo "${archivo.name}" pesa más de ${MAX_MB} MB.`);
-      e.target.value = '';
-      setFormState({ ...formState, [campo]: null });
-      return;
-    }
-    setFormState({ ...formState, [campo]: archivo });
-  };
-
-  // Mensaje final según el resultado de Drive que devuelve la API
-  const mensajeDrive = (res, textoOk) => {
-    const errores = res.drive_errores ? Object.entries(res.drive_errores) : [];
-    if (res.advertencia_drive) {
-      return `Los datos se guardaron, pero NO se pudo subir el expediente a Google Drive:\n${res.advertencia_drive}`;
-    }
-    if (errores.length > 0) {
-      return `Los datos se guardaron, pero algunos documentos fallaron:\n` +
-        errores.map(([campo, msg]) => `• ${campo}: ${msg}`).join('\n');
-    }
-    return textoOk;
-  };
-
-  // Función auxiliar robusta para adjuntar todos los campos a un FormData
-  const appendFormData = (formObj) => {
-    const formData = new FormData();
-    
-    // Forzar explícitamente el id_empleado si existe
-    if (formObj.id_empleado) {
-      formData.append('id_empleado', formObj.id_empleado);
-    }
-
-    Object.keys(formObj).forEach(key => {
-      if (key !== 'id_empleado' && formObj[key] !== null && formObj[key] !== undefined && formObj[key] !== '') {
-        formData.append(key, formObj[key]);
-      }
-    });
-
-    return formData;
-  };
-
-  // Crear Empleado utilizando el servicio api.js
+  // Crear Empleado
   const handleCrearSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = appendFormData(formCrear);
-      const res = await api.createEmpleado(formData);
-
+      const res = await api.createEmpleado(formCrear);
       if (res.id_empleado || res.mensaje) {
         setShowModalCrear(false);
         setFormCrear({
-          nombre: '', usuario: '', password: '', puesto: '', id_sucursal: '',
-          horario: '', fecha_nacimiento: '', activo: 1,
-          ine: null, curp: null, rfc: null, acta_nacimiento: null,
-          comprobante_domicilio: null, nss: null, estudios: null,
-          cedula_profesional: null, solicitud_trabajo: null,
-          cartas_recomendacion: null, cv: null, carta_antecedentes: null, fotografia: null
+          nombre: '',
+          usuario: '',
+          password: '',
+          puesto: '',
+          id_sucursal: '',
+          horario: '',
+          fecha_nacimiento: '',
+          activo: 1
         });
         cargarEmpleados();
-        alert(mensajeDrive(res, '¡Empleado registrado y expediente subido a Google Drive exitosamente!'));
       } else {
-        alert(`${res.detalle ? `${res.error}\n${res.detalle}` : (res.error || 'Error al registrar.')}\n\n(Servidor usado: ${API_BASE_URL})`);
+        alert(res.error || 'Error al registrar.');
       }
     } catch (error) {
-      console.error(error);
-      alert(`Error de conexión con el servidor: ${error.message}`);
+      alert('Error de conexión con el servidor.');
     }
   };
 
@@ -159,53 +86,45 @@ export default function Usuarios() {
       usuario: emp.usuario || '',
       password: '',
       puesto: emp.puesto,
-      id_sucursal: emp.id_sucursal || '',
+      id_sucursal: emp.id_sucursal || '', // Carga correctamente el ID numérico al abrir el modal
       horario: emp.horario,
       fecha_nacimiento: emp.fecha_nacimiento,
-      activo: parseInt(emp.activo, 10),
-      ine: null, curp: null, rfc: null, acta_nacimiento: null,
-      comprobante_domicilio: null, nss: null, estudios: null,
-      cedula_profesional: null, solicitud_trabajo: null,
-      cartas_recomendacion: null, cv: null, carta_antecedentes: null, fotografia: null
+      activo: parseInt(emp.activo, 10)
     });
     setShowModalEditar(true);
   };
 
-  // Guardar Edición utilizando el servicio api.js
+  // Guardar Edición
   const handleEditarSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = appendFormData(formEditar);
-      const res = await api.updateEmpleado(formData);
-
+      const res = await api.updateEmpleado(formEditar);
       if (res.mensaje) {
         setShowModalEditar(false);
         cargarEmpleados();
-        alert(mensajeDrive(res, 'Actualizado y expediente sincronizado correctamente en Google Drive'));
+        alert('Actualizado correctamente');
       } else {
-        alert(`${res.error || 'Error al actualizar.'}\n\n(Servidor usado: ${API_BASE_URL})` + (res.debug ? `\n\nDEBUG:\n${JSON.stringify(res.debug, null, 2)}` : ''));
+        alert(res.error || 'Error al actualizar.');
       }
     } catch (error) {
-      console.error(error);
-      alert(`Error de conexión con el servidor: ${error.message}`);
+      alert('Error de conexión.');
     }
   };
 
-  // Cambio rápido de Estado (Activo / Inactivo)
+  // Cambio rápido de Estado (Activo / Inactivo) con un clic
   const handleToggleEstado = async (emp) => {
     const nuevoEstado = emp.activo == 1 ? 0 : 1;
     try {
-      const formData = new FormData();
-      formData.append('id_empleado', emp.id_empleado);
-      formData.append('nombre', emp.nombre);
-      formData.append('usuario', emp.usuario || '');
-      formData.append('puesto', emp.puesto);
-      formData.append('id_sucursal', emp.id_sucursal);
-      formData.append('horario', emp.horario);
-      formData.append('fecha_nacimiento', emp.fecha_nacimiento);
-      formData.append('activo', nuevoEstado);
-
-      const res = await api.updateEmpleado(formData);
+      const res = await api.updateEmpleado({
+        id_empleado: emp.id_empleado,
+        nombre: emp.nombre,
+        usuario: emp.usuario,
+        puesto: emp.puesto,
+        id_sucursal: emp.id_sucursal,
+        horario: emp.horario,
+        fecha_nacimiento: emp.fecha_nacimiento,
+        activo: nuevoEstado
+      });
       if (res.mensaje) {
         cargarEmpleados();
       }
@@ -219,87 +138,6 @@ export default function Usuarios() {
     (emp.usuario && emp.usuario.toLowerCase().includes(busqueda.toLowerCase())) ||
     (emp.puesto && emp.puesto.toLowerCase().includes(busqueda.toLowerCase())) ||
     (emp.sucursal && emp.sucursal.toLowerCase().includes(busqueda.toLowerCase()))
-  );
-
-  // Campos de documentos
-  const renderCamposDocumentos = (formState, setFormState) => (
-    <div style={{ marginTop: '1.5rem', borderTop: '2px solid var(--border)', paddingTop: '1rem' }}>
-      <p style={{ fontWeight: '700', marginBottom: '1rem', color: 'var(--color-azul-principal)', fontSize: '1rem' }}>
-        📁 Expediente Completo
-      </p>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">INE / Identificación</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'ine', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">CURP</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'curp', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">RFC</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'rfc', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Acta de Nacimiento</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'acta_nacimiento', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Comprobante de Domicilio</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'comprobante_domicilio', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Número de Seguro Social (NSS)</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'nss', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Título o Certificado de Estudios</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'estudios', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Cédula Profesional (Opcional)</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'cedula_profesional', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Solicitud de Trabajo</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'solicitud_trabajo', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">2 Cartas de Recomendación</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'cartas_recomendacion', formState, setFormState)} />
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'cartas_recomendacion', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-grid-2">
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">CV (Currículum)</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'cv', formState, setFormState)} />
-        </div>
-        <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-          <label className="form-label">Carta de Antecedentes</label>
-          <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'carta_antecedentes', formState, setFormState)} />
-        </div>
-      </div>
-
-      <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-        <label className="form-label">Fotografía</label>
-        <input type="file" className="form-input" onChange={(e) => seleccionarArchivo(e, 'fotografia', formState, setFormState)} />
-      </div>
-    </div>
   );
 
   return (
@@ -379,7 +217,7 @@ export default function Usuarios() {
                       <button
                         type="button"
                         className="icon-btn icon-btn-edit"
-                        title="Editar Datos / Contraseña / Expediente"
+                        title="Editar Datos / Contraseña"
                         onClick={() => handleAbrirEditar(emp)}
                       >
                         <Pencil size={15} />
@@ -393,12 +231,12 @@ export default function Usuarios() {
         </table>
       </div>
 
-      {/* MODAL REGISTRAR NUEVO EMPLEADO */}
+      {/* REGISTRAR NUEVO EMPLEADO */}
       {showModalCrear && (
         <div className="modal-backdrop">
-          <div className="modal-card" style={{ maxWidth: '700px', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div className="modal-card">
             <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <strong style={{ color: 'var(--color-azul-principal)' }}>Registrar Nuevo Empleado y Expediente</strong>
+              <strong style={{ color: 'var(--color-azul-principal)' }}>Registrar Nuevo Empleado</strong>
               <span style={{ cursor: 'pointer', fontSize: '1.25rem', fontWeight: 'bold' }} onClick={() => setShowModalCrear(false)}>&times;</span>
             </div>
             <form onSubmit={handleCrearSubmit} style={{ padding: '1.5rem' }}>
@@ -490,9 +328,7 @@ export default function Usuarios() {
                 </div>
               </div>
 
-              {renderCamposDocumentos(formCrear, setFormCrear)}
-
-              <div className="form-group" style={{ marginTop: '1rem' }}>
+              <div className="form-group">
                 <label className="form-label">Estado Inicial</label>
                 <select
                   className="form-select"
@@ -504,9 +340,9 @@ export default function Usuarios() {
                 </select>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1rem' }}>
                 <button type="button" className="btn btn-limpiar" onClick={() => setShowModalCrear(false)}>Cancelar</button>
-                <button type="submit" className="btn btn-primary">Guardar y Subir a Drive</button>
+                <button type="submit" className="btn btn-primary">Guardar</button>
               </div>
             </form>
           </div>
@@ -516,9 +352,9 @@ export default function Usuarios() {
       {/* MODAL EDITAR EMPLEADO */}
       {showModalEditar && (
         <div className="modal-backdrop">
-          <div className="modal-card" style={{ maxWidth: '700px', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div className="modal-card">
             <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <strong style={{ color: 'var(--color-azul-principal)' }}>Editar Empleado (#{formEditar.id_empleado}) y Actualizar Expediente</strong>
+              <strong style={{ color: 'var(--color-azul-principal)' }}>Editar Empleado (#{formEditar.id_empleado})</strong>
               <span style={{ cursor: 'pointer', fontSize: '1.25rem', fontWeight: 'bold' }} onClick={() => setShowModalEditar(false)}>&times;</span>
             </div>
             <form onSubmit={handleEditarSubmit} style={{ padding: '1.5rem' }}>
@@ -620,11 +456,9 @@ export default function Usuarios() {
                 </select>
               </div>
 
-              {renderCamposDocumentos(formEditar, setFormEditar)}
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1rem' }}>
                 <button type="button" className="btn btn-limpiar" onClick={() => setShowModalEditar(false)}>Cancelar</button>
-                <button type="submit" className="btn btn-primary">Guardar Cambios y Actualizar Drive</button>
+                <button type="submit" className="btn btn-primary">Guardar Cambios</button>
               </div>
             </form>
           </div>
